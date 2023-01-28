@@ -1,0 +1,37 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+    // programa que cmabia de color cuando se hace click derecho
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400); 
+    var colores = ["blue","red","green"];
+    var indice_color_actual = 0;
+
+    function dibujarCirculo(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;    
+        pincel.fillStyle = colores[indice_color_actual]  ;
+        pincel.beginPath();
+        pincel.arc(x,y,10,0,2*3.14);
+        pincel.fill();
+        console.log(x + "," + y);        
+    }
+
+
+    function alterarColor(evento) {
+        indice_color_actual++;
+        if(indice_color_actual>= colores.length){
+            indice_color_actual = 0;
+        }
+
+        return false;
+    }
+    
+
+
+    pantalla.onclick = dibujarCirculo;
+    pantalla.oncontextmenu = alterarColor;
+
+</script>  

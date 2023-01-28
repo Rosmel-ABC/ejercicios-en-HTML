@@ -1,0 +1,42 @@
+<canvas width = "600"  height = "400"> </canvas>
+
+<script>
+
+    var pantalla = document.querySelector("canvas");    
+    var pincel = pantalla.getContext("2d");
+
+    pincel.fillStyle ="skyblue"; 
+    pincel.fillRect(0,0,600,400); 
+    
+    function draw_circulo(x, y, radio,color){
+        pincel.fillStyle = color ;
+        pincel.beginPath();
+        pincel.arc( x, y, radio , 0 , 2*3.14);
+        pincel.fill();
+    }
+
+    function draw_tallo (color){
+        pincel.fillStyle = color ;
+        pincel.beginPath();
+        pincel.moveTo(295,200);
+        pincel.lineTo(295,400);
+        pincel.lineTo(305,400);
+        pincel.lineTo(305,200);
+        pincel.fill();
+
+    }
+    
+    //draw_circulo(300,200, 20 ,"orange");  //medio
+    draw_tallo("darkgreen");
+    draw_circulo(260,200, 20 ,"white");  //izquierdo
+    draw_circulo(340,200, 20 ,"white"); // derecho
+    draw_circulo(300,160, 20 ,"white"); //arriba
+    draw_circulo(300,240, 20 ,"white"); // abajo
+
+    draw_circulo(275,175, 20 ,"white"); //izquierdo-arriba
+    draw_circulo(325,175, 20 ,"white"); // derecho-arriba
+    draw_circulo(275,225, 20 ,"white"); //abajo -izquierda
+    draw_circulo(325,225, 20 ,"white"); //abajo -derecha
+    draw_circulo(300,200, 20 ,"orange");  //medio
+
+</script>

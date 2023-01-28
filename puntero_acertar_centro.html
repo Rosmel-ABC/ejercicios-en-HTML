@@ -1,0 +1,68 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+    // programa  crea un circulo  en un posicion desginada
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "skyblue";
+    pincel.fillRect(0,0,600,400); 
+
+    var x_rand;
+    var y_rand;
+
+    function dibujarCirculo(x, y, radio, color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();       
+    }
+
+    function limpiar_pantalla(){
+
+        pincel.clearRect(0,0,600,400);   // funcion predeterminado para limpiar pantalla
+
+    }
+
+    radio =10;
+    function diseñar_objetivo(x,y){
+        dibujarCirculo(x,y,radio +20,"red")
+        dibujarCirculo(x,y,radio +10,"white")
+        dibujarCirculo(x,y,radio,"red")
+    }
+
+    function sortear_posicion(maximo){
+
+        return Math.floor(Math.random()*maximo);
+    }
+
+
+    var x = 0 ;
+
+    function actualizar_pantalla(){
+    limpiar_pantalla();
+    x_rand = sortear_posicion(600);
+    y_rand = sortear_posicion(400);
+    diseñar_objetivo(x_rand,y_rand);
+    }
+
+    setInterval(actualizar_pantalla, 1000) 
+
+    function disparar(evento){
+
+        var x=evento.pageX - pantalla.offsetLeft;
+        var y=evento.pageY - pantalla.offsetTop;
+
+        if(((x<x_rand +radio)&&
+            (x>x_rand -radio)&&
+            (y<y_rand +radio)&&
+            (y>y_rand -radio)))
+        {
+            alert("tiro certero")
+
+        }
+
+    }
+
+    pantalla.onclick =disparar;
+</script>  

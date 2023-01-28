@@ -1,0 +1,48 @@
+<canvas width = "600"  height = "400"> </canvas>
+
+<script>
+    function draw_rectangulo(x, y , base, altura, color){
+        var pantalla = document.querySelector("canvas");    
+        var pincel = pantalla.getContext("2d");
+
+        pincel.fillStyle = color ;
+        pincel.fillRect (x,y,base,altura);
+        pincel.strokeStyle = "black";
+        pincel.strokeRect(x,y,base,altura);
+
+    }
+
+    function write_texto(x,y,texto){
+        var pantalla = document.querySelector("canvas");    
+        var pincel = pantalla.getContext("2d");
+
+        pincel.font = "15px Georgia";
+        pincel.fillStyle = "black";
+        pincel.fillText (texto, x, y);
+
+    }
+
+    function draw_barra(x, y, serie, colores, texto) {
+        
+        write_texto ( x, y - 10, texto);        
+
+        var suma_altura = 0 ;  // valor inicial
+        for ( var i = 0 ; i < serie.length ; i++) {
+            var altura = serie [i];
+            draw_rectangulo (x , y + suma_altura , 50 , altura , colores[i]) ;
+            suma_altura = suma_altura +altura;
+            }
+    }
+
+    var serie2009 = [6,47,41,3,3];
+    var serie2019 = [81,9,3,3,4];
+    var serie2022 = [60,30,5,3,2];
+    var colores = ["blue" , "green" ,"yellow" , "red" ,"gray"];
+
+
+draw_barra ( 50, 50 , serie2009 , colores , "2009");
+draw_barra ( 150 , 50 , serie2019 , colores , " 2019");
+draw_barra ( 250 , 50 , serie2022 , colores , " 2022");
+
+</script>
+

@@ -1,0 +1,45 @@
+<canvas width="600" height="400"> </canvas>
+
+<script>
+    // programa  crea un circulo  en un posicion desginada
+
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "skyblue";
+    pincel.fillRect(0,0,600,400); 
+
+    function dibujarCirculo(x, y, radio, color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();       
+    }
+
+    function limpiar_pantalla(){
+
+        pincel.clearRect(0,0,600,400);   // funcion predeterminado para limpiar pantalla
+
+    }
+    
+    var x = 0 ;
+    var sentido = 1 ;  // valor incial
+
+    function actualizar_pantalla(){
+
+        limpiar_pantalla();
+
+        if(x>600){
+            sentido = -1;
+        }else if(x<0){
+            sentido = 1;
+        }
+
+        dibujarCirculo(x,80,30, "green");
+        x=x+sentido;
+        dibujarCirculo(x,180,30, "red");
+        x=x+sentido;
+    }
+
+    setInterval(actualizar_pantalla, 5) // funcion predeterminada usando tiempo
+
+</script>  
